@@ -9,11 +9,12 @@ import { styled } from "styled-components";
 import { Card } from "../common/Card";
 import { centsToEurPrice } from "../../common/money";
 import { MobilePayQrCode } from "./MobilePayQrCode";
-import { IconCheck, IconDeviceMobile } from "@tabler/icons-react";
-import { Button, SecondaryButton } from "../common/Button";
+import { IconCheck } from "@tabler/icons-react";
+import { Button } from "../common/Button";
 import { Member } from "../../common/domain";
 import { generateMobilePayAppLink } from "../../common/mobilePay";
 import { Breadcrumbs } from "../common/Breadcrumbs";
+import MaksaMobilePayllaSvg from "url:../maksa-mobilepaylla-blue.svg";
 
 const CardList = styled.div`
   display: flex;
@@ -41,6 +42,22 @@ const PaymentOptionsContainer = styled.div`
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
+`;
+
+const PayWithMobilePayButton = styled.a`
+  opacity: 0.9;
+  border-radius: 4px;
+  transition: box-shadow 150ms cubic-bezier(0.4, 0, 1, 1),
+    opacity 150ms cubic-bezier(0.4, 0, 1, 1);
+
+  &:hover {
+    box-shadow: 0 0 10px 5px rgba(90, 120, 255, 0.3),
+      0 0 3px 0px rgb(173, 188, 255, 0.3);
+    opacity: 1;
+
+    transition: box-shadow 150ms cubic-bezier(0, 0, 0.2, 1),
+      opacity 150ms cubic-bezier(0, 0, 0.2, 1);
+  }
 `;
 
 interface CreatePaymentCardProps {
@@ -81,8 +98,7 @@ function CreatePaymentCard({ payee, amount, payerId, expenseGroupId, onPaymentCr
               <MobilePayQrCode amount={amount} phone={phone} />
               <PaymentOptionsContainer>
                 <span>Lue koodi tai</span>
-                <SecondaryButton
-                  as={"a"}
+                <PayWithMobilePayButton
                   href={generateMobilePayAppLink({
                     amount,
                     phone,
@@ -90,9 +106,8 @@ function CreatePaymentCard({ payee, amount, payerId, expenseGroupId, onPaymentCr
                   target={"_blank"}
                   rel={"noopener noreferrer"}
                 >
-                  <IconDeviceMobile />
-                  Avaa MobilePay
-                </SecondaryButton>
+                  <img src={MaksaMobilePayllaSvg} alt="Maksa MobilePaylla" height="36" />
+                </PayWithMobilePayButton>
               </PaymentOptionsContainer>
             </>
           ) : (
