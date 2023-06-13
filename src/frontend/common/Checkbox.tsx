@@ -42,7 +42,7 @@ const Checkmark = styled(IconCheck).attrs({ size: 16 })`
   transform: translate(-50%, -50%);
 `;
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
 }
 
