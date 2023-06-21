@@ -8,6 +8,7 @@ import { centsToEurPrice } from "../../common/money";
 const ExpensesTable = styled(Table)`
   grid-template-columns:
     minmax(max-content, 2fr)
+    minmax(max-content, 2fr)
     minmax(120px, 200px)
     minmax(max-content, 2fr)
     max-content;
@@ -41,6 +42,7 @@ export function Expenses({ expenseGroupId, expenses }: Props) {
     <ExpensesTable>
       <thead>
         <tr>
+          <th>Luotu</th>
           <th>Selite</th>
           <th>Maksaja</th>
           <MoneyHeader>Summa</MoneyHeader>
@@ -50,6 +52,7 @@ export function Expenses({ expenseGroupId, expenses }: Props) {
       <tbody>
         {expenses.map((expense) => (
           <tr key={expense.id}>
+            <TextCell>{new Date(expense.createdAt).toLocaleString("fi-FI")}</TextCell>
             <TextCell>{expense.name}</TextCell>
             <ExpensePayerCell>
               <span>
@@ -64,6 +67,7 @@ export function Expenses({ expenseGroupId, expenses }: Props) {
         ))}
         <tr>
           <th>Yhteensä</th>
+          <th />
           <th />
           <MoneyHeader>{centsToEurPrice(total)}</MoneyHeader>
           <th />
