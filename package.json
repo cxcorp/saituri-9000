@@ -52,7 +52,7 @@
     "backend:build": "NODE_ENV=production tsc",
     "backend:start-prod": "NODE_ENV=production SAITURI_ENV=production node build/backend/index.js",
     "frontend:start": "PORT=1234 parcel src/frontend/index.html --dist-dir dist-dev",
-    "frontend:build": "NODE_ENV=production parcel build --public-url /assets src/frontend/index.html",
+    "frontend:build": "NODE_ENV=production parcel build --no-cache --public-url /assets src/frontend/index.html",
     "frontend:watch-test": "SAITURI_ENV=test parcel watch --public-url /assets src/frontend/index.html --dist-dir dist-test",
     "frontend:build-test": "SAITURI_ENV=test parcel build --public-url /assets src/frontend/index.html --dist-dir dist-test",
     "build": "yarn backend:build && yarn frontend:build",
